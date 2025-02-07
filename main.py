@@ -18,6 +18,31 @@ class Lecturer(Mentor):
         count_grades = sum(len(grades) for grades in self.grades.values())
         return total_grades / count_grades if count_grades != 0 else 0
 
+    def __eq__(self, other):
+        if not isinstance(other, Lecturer):
+            return NotImplemented
+        return self._calculate_average_grade() == other._calculate_average_grade()
+
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            return NotImplemented
+        return self._calculate_average_grade() < other._calculate_average_grade()
+
+    def __le__(self, other):
+        if not isinstance(other, Lecturer):
+            return NotImplemented
+        return self._calculate_average_grade() <= other._calculate_average_grade()
+
+    def __gt__(self, other):
+        if not isinstance(other, Lecturer):
+            return NotImplemented
+        return self._calculate_average_grade() > other._calculate_average_grade()
+
+    def __ge__(self, other):
+        if not isinstance(other, Lecturer):
+            return NotImplemented
+        return self._calculate_average_grade() >= other._calculate_average_grade()
+
 class Reviewer(Mentor):
     def __init__(self, name, surname, courses_attached):
         super().__init__(name, surname, courses_attached)
@@ -62,6 +87,31 @@ class Student:
         count_grades = sum(len(grades) for grades in self.grades.values())
         return total_grades / count_grades if count_grades != 0 else 0
 
+    def __eq__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._calculate_average_grade() == other._calculate_average_grade()
+
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._calculate_average_grade() < other._calculate_average_grade()
+
+    def __le__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._calculate_average_grade() <= other._calculate_average_grade()
+
+    def __gt__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._calculate_average_grade() > other._calculate_average_grade()
+
+    def __ge__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._calculate_average_grade() >= other._calculate_average_grade()
+
 # Примеры создания экземпляров и вызова методов
 lecturer1 = Lecturer('John', 'Doe', ['Python'])
 lecturer2 = Lecturer('Jane', 'Smith', ['Git'])
@@ -77,9 +127,9 @@ student1.rate_lecturer(lecturer1, 'Python', 9)
 
 print(lecturer1)
 print(reviewer1)
-print(student1)     
+print(student1)
 
-     def average_grade_students(students, course):
+def average_grade_students(students, course):
     total_grades = 0
     count_grades = 0
     for student in students:
@@ -88,7 +138,7 @@ print(student1)
             count_grades += len(student.grades[course])
     return total_grades / count_grades if count_grades != 0 else 0
 
-     def average_grade_lecturers(lecturers, course):
+def average_grade_lecturers(lecturers, course):
     total_grades = 0
     count_grades = 0
     for lecturer in lecturers:
